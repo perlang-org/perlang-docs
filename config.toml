@@ -1,0 +1,4 @@
+baseURL = "https://docs.perlang.org/"
+languageCode = "en-us"
+title = "Perlang Documentation"
+theme = "book"
