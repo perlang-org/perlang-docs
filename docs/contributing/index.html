@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contributing"><meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.perlang.org/docs/contributing/" />
+
+<title>Contributing | Perlang</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/book.min.829f7602029a29a47bf1b0c9c4bb52982089a6d13558c9433d3c8b7e38c8b3b8.css" integrity="sha256-gp92AgKaKaR78bDJxLtSmCCJptE1WMlDPTyLfjjIs7g=">
+
+
+<script defer src="/en.search.min.f3ec6322e36042b6b603cd2fc907c29c11a23c12e968af89adac15cdbe8ab7dd.js" integrity="sha256-8&#43;xjIuNgQra2A80vyQfCnBGiPBLpaK&#43;JrawVzb6Kt90="></script>
+
+<link rel="alternate" type="application/rss+xml" href="https://docs.perlang.org/docs/contributing/index.xml" title="Perlang" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>Perlang</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+
+
+
+
+
+ 
+  
+    
+
+
+
+
+  
+  <ul>
+    
+      
+        
+
+  <li>
+    
+
+  
+  <a href="/docs/contributing/" class="active">Contributing</a>
+  
+
+
+    
+
+
+
+
+  
+  <ul>
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
+      
+    
+      
+        
+
+  <li>
+    
+
+  
+  <a href="/docs/downloads/" class="">Downloads</a>
+  
+
+
+    
+
+
+
+
+  
+  <ul>
+    
+  </ul>
+  
+
+
+
+  </li>
+
+
+      
+    
+  </ul>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Contributing</strong>
+
+  <label for="toc-control">
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-github-repository-structure">The GitHub repository structure</a></li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="contributing">Contributing</h1>
+<p>Perlang is at a very early state in its infancy, but do not let this scare you away from contributing anyway. Here are some suggestions:</p>
+<ul>
+<li>
+<p>Proof-read this documentation web site. Find out obvious mistakes and submit fixes as GitHub pull requests. There is a convenient &ldquo;Edit this page&rdquo; link at the bottom of each page that simplifies the process of doing simple edits.</p>
+</li>
+<li>
+<p>Download the Perlang source code and try to build it on your local machine. Run the unit tests, to see if they work correctly with your operating system/.NET Core SDK version. If you have ideas for new unit tests, feel free to submit a PR. We are aiming for porting a number of tests from the <a href="https://github.com/munificent/craftinginterpreters/tree/master/test">Lox test suite</a> where applicable, so there is plenty of room here for improvement. (Caveat: we don&rsquo;t support the full feature set from Lox yet, like classes. But there are still many things we <em>do</em> support but which ware lacking unit tests at the moment)</p>
+</li>
+<li>
+<p>File new issues about things that you think Perlang should support. This is <strong>especially</strong> of interest if you have worked with other programming languages before, that were either lacking some important feature, or <em>included</em> a particular killer feature that you really think we should consider for inclusion in the Perlang code base as well.</p>
+</li>
+</ul>
+<h2 id="the-github-repository-structure">The GitHub repository structure</h2>
+<ul>
+<li>
+<p><a href="https://github.com/perlanghq/perlang-docs">https://github.com/perlanghq/perlang-docs</a> - this is the repository for the documentation you are reading right now. The <code>master</code> branch contains the editable content, whereas the <code>gh-pages</code> branch contains the generated web site.</p>
+</li>
+<li>
+<p><a href="https://github.com/perlun/perlang">https://github.com/perlun/perlang</a> - the source code for the Perlang interpreter</p>
+</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
+  <div>
+    
+    <a class="flex align-center" href="https://github.com/perlanghq/perlang-docs/commit/6318694f1e232396350399360544f7bc1d149fc5" title='Last modified by Per Lundberg | March 3, 2020' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>March 3, 2020</span>
+    </a>
+  </div>
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/perlanghq/perlang-docs/edit/master/content/docs/contributing/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+      </footer>
+      
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-github-repository-structure">The GitHub repository structure</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
