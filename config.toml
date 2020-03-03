@@ -1,4 +1,19 @@
 baseURL = "https://docs.perlang.org/"
 languageCode = "en-us"
-title = "Perlang Documentation"
+title = "Perlang"
 theme = "book"
+
+# (Optional) Set this to true to enable 'Last Modified by' date and git author
+#  information on 'doc' type pages.
+enableGitInfo = true
+
+[params]
+
+# Set source repository location.
+# Used for 'Last Modified' and 'Edit this page' links.
+BookRepo = 'https://github.com/perlanghq/perlang-docs'
+
+# Enable 'Edit this page' links for 'doc' page type.
+# Disabled by default. Uncomment to enable. Requires 'BookRepo' param.
+# Path must point to 'content' directory of repo.
+BookEditPath = 'edit/master/content'

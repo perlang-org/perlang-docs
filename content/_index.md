@@ -25,7 +25,7 @@ So, what things was it that Per found missing in Ruby?
 
 Ruby is a dynamically typed language, so variables, fields and method parameters are inherently untyped. However, unlike modern languages like [TypeScript](https://www.typescriptlang.org/) that provide a way to add an "optional" type specifier for the variable or parameter, Ruby provides no such mechanism. Why is this a problem?
 
-Well, it doesn't have to be, depending on whether you are dynamically or statically shaped. But regardless of your personal preferences, types _exist_. They are real. It's not like they don't exist in a dynamically typed language, it's just that all the type checking has been deferred to a later stage - to runtime.
+Well, it doesn't have to be, depending on whether you are dynamically or statically inclined. But regardless of your personal preferences, types _exist_. They are real. It's not like they don't exist in a dynamically typed language, it's just that all the type checking has been deferred to a later stage - to runtime.
 
 For me, when writing code, I tend to think about what type of objects a method will receive. A simple example to get you going:
 
@@ -69,7 +69,7 @@ As systems grow in size, this becomes more and more important. Simply put, it gi
 
 What if we could extend these concepts further to let the compiler make an even more extensive analysis of the program? This is definitely an area we want to delve further into as we explore what Perlang will become.
 
-### Static dispatch of methods
+### Dynamic dispatch of methods
 
 Ruby uses an extreme form of "dynamic dispatch" when it comes to calling methods. The following program is completely valid:
 
@@ -93,7 +93,8 @@ def method_missing(method_name, *args)
   puts "You called #{method_name} with #{args}"
 end
 
-# (Note: parentheses for methods are not mandatory in Ruby.)
+# (Note: parentheses for method calls are not mandatory in Ruby. The
+# line below calls the "foo" method defined above.)
 foo
 ```
 
@@ -108,10 +109,10 @@ Nice, huh? This functionality is what powers some of the existing [DSL:s](https:
 
 I think it's good to have this kind of functionality in the language, but the bad part about it is that there's absolutely no way to "turn it off" for cases where you would prefer a `use strict`-mode or similar. I have had cases when there was a typo in a method call or field/variable reference where this was not caught by the unit tests, and I released an updated version of an (internal) Ruby gem - only to realize my folly a bit later.
 
-Per has a strong conviction that a really good programming language should help you avoid easy mistakes like that.
+It is my strong conviction that a really good programming language should help you avoid easy mistakes like this.
 
 ### Excessive reliance on unit tests to detect all errors
 
 Because of the lack of static analysis of the code (or at least a very weak analysis of it), people in the Ruby camp rely heavily on unit tests for finding software errors. This is not necessarily a bad thing in itself, since unit tests are great and I definitely think the world is better _with_ unit tests than without them, but the thing I _don't_ like is that with Ruby, you are essentially forced to go for at least 100% code coverage to even know that your code is _at all_ working.
 
-There is a joke in the industry saying that "if it compiles, ship it". Even though this is indeed a joke, there is still some point in it. If a computer system _compiles_, it's not at last fundamentally broken in that methods or classes are being referred to using the wrong name, or silly things like that. The compiler gives you a certain safety net, and I personally find that very valuable.
+There is a joke in the industry saying that "if it compiles, ship it". Even though this is indeed a joke, there is still a valid point in it. If a computer system _compiles_, it's not at last fundamentally broken in that methods or classes are being referred to using the wrong name, or silly things like that. The compiler gives you a certain safety net, and I personally find that very valuable. With Perlang, we will strive to make this safety net as comfortable and convenient for you as a developer as possible.
