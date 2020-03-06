@@ -19,9 +19,9 @@ Some of these languages felt inherently more pleasant to work with than others. 
 
 Of the languages mentioned, Ruby was a language that _particularly_ made Per frustrated and annoyed. If you don't know Ruby from beforehand, it's a dymamically typed scripting language, often used for writing web application backends (with "Ruby on Rails", which is an application framework written in Ruby). Ruby definitely has its strengths, and a few years later, Per started to appreciate it much more, perhaps because he was now using it for use cases where it was an even better fit than his previous projects.
 
-So, what things was it that Per found missing in Ruby?
+## Things I was missing in Ruby
 
-### No optional typing
+### Optional typing
 
 Ruby is a dynamically typed language, so variables, fields and method parameters are inherently untyped. However, unlike modern languages like [TypeScript](https://www.typescriptlang.org/) that provide a way to add an "optional" type specifier for the variable or parameter, Ruby provides no such mechanism. Why is this a problem?
 
@@ -69,7 +69,7 @@ As systems grow in size, this becomes more and more important. Simply put, it gi
 
 What if we could extend these concepts further to let the compiler make an even more extensive analysis of the program? This is definitely an area we want to delve further into as we explore what Perlang will become.
 
-### Dynamic dispatch of methods
+### Static dispatch of methods
 
 Ruby uses an extreme form of "dynamic dispatch" when it comes to calling methods. The following program is completely valid:
 
@@ -111,8 +111,14 @@ I think it's good to have this kind of functionality in the language, but the ba
 
 It is my strong conviction that a really good programming language should help you avoid easy mistakes like this.
 
+## Consequences of the above
+
 ### Excessive reliance on unit tests to detect all errors
 
-Because of the lack of static analysis of the code (or at least a very weak analysis of it), people in the Ruby camp rely heavily on unit tests for finding software errors. This is not necessarily a bad thing in itself, since unit tests are great and I definitely think the world is better _with_ unit tests than without them, but the thing I _don't_ like is that with Ruby, you are essentially forced to go for at least 100% code coverage to even know that your code is _at all_ working.
+Because of the lack of static analysis of the code (or at least a very weak analysis of it), people in the Ruby camp rely heavily on unit tests for finding software errors. This is not necessarily a bad thing in itself, since unit tests are great and I definitely think the world is better _with_ unit tests than without them, but the thing I _don't_ like is that with Ruby, you are essentially forced to go for at least 100% code coverage to even know that your code is at all _remotely_ working. There are so many small things that can be broken if you ignore this.
 
 There is a joke in the industry saying that "if it compiles, ship it". Even though this is indeed a joke, there is still a valid point in it. If a computer system _compiles_, it's not at last fundamentally broken in that methods or classes are being referred to using the wrong name, or silly things like that. The compiler gives you a certain safety net, and I personally find that very valuable. With Perlang, we will strive to make this safety net as comfortable and convenient for you as a developer as possible.
+
+### Inferior tooling/IDE support
+
+### Inferior performance
