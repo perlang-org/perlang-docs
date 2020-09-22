@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="/book.min.829f7602029a29a47bf1b0c9c4bb52982089a6d13558c9433d3c8b7e38c8b3b8.css" integrity="sha256-gp92AgKaKaR78bDJxLtSmCCJptE1WMlDPTyLfjjIs7g=">
 
 
-<script defer src="/en.search.min.f3ec6322e36042b6b603cd2fc907c29c11a23c12e968af89adac15cdbe8ab7dd.js" integrity="sha256-8&#43;xjIuNgQra2A80vyQfCnBGiPBLpaK&#43;JrawVzb6Kt90="></script>
+<script defer src="/en.search.min.808ecc7760c2e6b998627ca3d5a23e59adc145ec8fecea34f8c0096bee64e16f.js" integrity="sha256-gI7Md2DC5rmYYnyj1aI&#43;Wa3BReyP7Oo0&#43;MAJa&#43;5k4W8="></script>
 
 <link rel="alternate" type="application/rss+xml" href="https://docs.perlang.org/index.xml" title="Perlang" />
 <!--
@@ -189,12 +189,19 @@ https://github.com/alex-shpak/hugo-book
   <nav id="TableOfContents">
   <ul>
     <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#background-to-how-perlang-was-born">Background to how Perlang was born</a>
+    <li><a href="#background-to-how-perlang-was-born">Background to how Perlang was born</a></li>
+    <li><a href="#things-i-was-missing-in-ruby">Things I was missing in Ruby</a>
       <ul>
-        <li><a href="#no-optional-typing">No optional typing</a></li>
+        <li><a href="#optional-typing">Optional typing</a></li>
         <li><a href="#static-type-analysis">Static type analysis</a></li>
-        <li><a href="#dynamic-dispatch-of-methods">Dynamic dispatch of methods</a></li>
+        <li><a href="#static-dispatch-of-methods">Static dispatch of methods</a></li>
+      </ul>
+    </li>
+    <li><a href="#consequences-of-the-above">Consequences of the above</a>
+      <ul>
         <li><a href="#excessive-reliance-on-unit-tests-to-detect-all-errors">Excessive reliance on unit tests to detect all errors</a></li>
+        <li><a href="#inferior-toolingide-support">Inferior tooling/IDE support</a></li>
+        <li><a href="#inferior-performance">Inferior performance</a></li>
       </ul>
     </li>
   </ul>
@@ -216,8 +223,8 @@ https://github.com/alex-shpak/hugo-book
 <p>Perlang was conceived in the heart of Per Lundberg around the year 2017-2018, after having worked as a professional programmer for many years, using various languages like Perl, Java, C# and lately, spending a rather large amount of time working with Ruby code. Perhaps a little bit of CoffeeScript and JavaScript there as well.</p>
 <p>Some of these languages felt inherently more pleasant to work with than others. Sometimes, his view of a language was formed not only by facts but also by &ldquo;hearsay&rdquo;; for example, other people complaining about a language being overly verbose (like Java), rather than having spent a great amount of time working with this language lately.</p>
 <p>Of the languages mentioned, Ruby was a language that <em>particularly</em> made Per frustrated and annoyed. If you don&rsquo;t know Ruby from beforehand, it&rsquo;s a dymamically typed scripting language, often used for writing web application backends (with &ldquo;Ruby on Rails&rdquo;, which is an application framework written in Ruby). Ruby definitely has its strengths, and a few years later, Per started to appreciate it much more, perhaps because he was now using it for use cases where it was an even better fit than his previous projects.</p>
-<p>So, what things was it that Per found missing in Ruby?</p>
-<h3 id="no-optional-typing">No optional typing</h3>
+<h2 id="things-i-was-missing-in-ruby">Things I was missing in Ruby</h2>
+<h3 id="optional-typing">Optional typing</h3>
 <p>Ruby is a dynamically typed language, so variables, fields and method parameters are inherently untyped. However, unlike modern languages like <a href="https://www.typescriptlang.org/">TypeScript</a> that provide a way to add an &ldquo;optional&rdquo; type specifier for the variable or parameter, Ruby provides no such mechanism. Why is this a problem?</p>
 <p>Well, it doesn&rsquo;t have to be, depending on whether you are dynamically or statically inclined. But regardless of your personal preferences, types <em>exist</em>. They are real. It&rsquo;s not like they don&rsquo;t exist in a dynamically typed language, it&rsquo;s just that all the type checking has been deferred to a later stage - to runtime.</p>
 <p>For me, when writing code, I tend to think about what type of objects a method will receive. A simple example to get you going:</p>
@@ -246,7 +253,7 @@ https://github.com/alex-shpak/hugo-book
 <p>Why is this important? It is important because typically, it&rsquo;s better if a program fails <em>as early as possible</em> rather than deferring potential failures to runtime checking. We call this the <a href="https://en.wikipedia.org/wiki/Fail-fast">&ldquo;fail fast&rdquo;</a> philosophy.</p>
 <p>As systems grow in size, this becomes more and more important. Simply put, it gives you an extra level of comfort where you can trust the compiler to find errors in your program. Not <em>all</em> errors unfortunately, but at least a good deal of them.</p>
 <p>What if we could extend these concepts further to let the compiler make an even more extensive analysis of the program? This is definitely an area we want to delve further into as we explore what Perlang will become.</p>
-<h3 id="dynamic-dispatch-of-methods">Dynamic dispatch of methods</h3>
+<h3 id="static-dispatch-of-methods">Static dispatch of methods</h3>
 <p>Ruby uses an extreme form of &ldquo;dynamic dispatch&rdquo; when it comes to calling methods. The following program is completely valid:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">foo</span>
   <span style="color:#75715e"># Calling a non-existent method</span>
@@ -272,9 +279,12 @@ You called bar with <span style="color:#f92672">[</span>123<span style="color:#f
 </code></pre></div><p>Nice, huh? This functionality is what powers some of the existing <a href="https://en.wikipedia.org/wiki/Domain-specific_language">DSL:s</a> written in Ruby, like <a href="https://github.com/jeremyevans/sequel">Sequel</a>.</p>
 <p>I think it&rsquo;s good to have this kind of functionality in the language, but the bad part about it is that there&rsquo;s absolutely no way to &ldquo;turn it off&rdquo; for cases where you would prefer a <code>use strict</code>-mode or similar. I have had cases when there was a typo in a method call or field/variable reference where this was not caught by the unit tests, and I released an updated version of an (internal) Ruby gem - only to realize my folly a bit later.</p>
 <p>It is my strong conviction that a really good programming language should help you avoid easy mistakes like this.</p>
+<h2 id="consequences-of-the-above">Consequences of the above</h2>
 <h3 id="excessive-reliance-on-unit-tests-to-detect-all-errors">Excessive reliance on unit tests to detect all errors</h3>
-<p>Because of the lack of static analysis of the code (or at least a very weak analysis of it), people in the Ruby camp rely heavily on unit tests for finding software errors. This is not necessarily a bad thing in itself, since unit tests are great and I definitely think the world is better <em>with</em> unit tests than without them, but the thing I <em>don&rsquo;t</em> like is that with Ruby, you are essentially forced to go for at least 100% code coverage to even know that your code is <em>at all</em> working.</p>
+<p>Because of the lack of static analysis of the code (or at least a very weak analysis of it), people in the Ruby camp rely heavily on unit tests for finding software errors. This is not necessarily a bad thing in itself, since unit tests are great and I definitely think the world is better <em>with</em> unit tests than without them, but the thing I <em>don&rsquo;t</em> like is that with Ruby, you are essentially forced to go for at least 100% code coverage to even know that your code is at all <em>remotely</em> working. There are so many small things that can be broken if you ignore this.</p>
 <p>There is a joke in the industry saying that &ldquo;if it compiles, ship it&rdquo;. Even though this is indeed a joke, there is still a valid point in it. If a computer system <em>compiles</em>, it&rsquo;s not at last fundamentally broken in that methods or classes are being referred to using the wrong name, or silly things like that. The compiler gives you a certain safety net, and I personally find that very valuable. With Perlang, we will strive to make this safety net as comfortable and convenient for you as a developer as possible.</p>
+<h3 id="inferior-toolingide-support">Inferior tooling/IDE support</h3>
+<h3 id="inferior-performance">Inferior performance</h3>
 </article>
  
       
@@ -287,9 +297,9 @@ You called bar with <span style="color:#f92672">[</span>123<span style="color:#f
 
   <div>
     
-    <a class="flex align-center" href="https://github.com/perlanghq/perlang-docs/commit/6318694f1e232396350399360544f7bc1d149fc5" title='Last modified by Per Lundberg | March 3, 2020' target="_blank" rel="noopener">
+    <a class="flex align-center" href="https://github.com/perlanghq/perlang-docs/commit/85472fc639c3e224b2d1acb126df6f388478aee1" title='Last modified by Per Lundberg | March 6, 2020' target="_blank" rel="noopener">
       <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
-      <span>March 3, 2020</span>
+      <span>March 6, 2020</span>
     </a>
   </div>
 
@@ -324,12 +334,19 @@ You called bar with <span style="color:#f92672">[</span>123<span style="color:#f
   <nav id="TableOfContents">
   <ul>
     <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#background-to-how-perlang-was-born">Background to how Perlang was born</a>
+    <li><a href="#background-to-how-perlang-was-born">Background to how Perlang was born</a></li>
+    <li><a href="#things-i-was-missing-in-ruby">Things I was missing in Ruby</a>
       <ul>
-        <li><a href="#no-optional-typing">No optional typing</a></li>
+        <li><a href="#optional-typing">Optional typing</a></li>
         <li><a href="#static-type-analysis">Static type analysis</a></li>
-        <li><a href="#dynamic-dispatch-of-methods">Dynamic dispatch of methods</a></li>
+        <li><a href="#static-dispatch-of-methods">Static dispatch of methods</a></li>
+      </ul>
+    </li>
+    <li><a href="#consequences-of-the-above">Consequences of the above</a>
+      <ul>
         <li><a href="#excessive-reliance-on-unit-tests-to-detect-all-errors">Excessive reliance on unit tests to detect all errors</a></li>
+        <li><a href="#inferior-toolingide-support">Inferior tooling/IDE support</a></li>
+        <li><a href="#inferior-performance">Inferior performance</a></li>
       </ul>
     </li>
   </ul>
