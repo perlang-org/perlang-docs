@@ -1,5 +1,7 @@
 # README
 
+> **No longer used**; superseded by https://github.com/perlun/perlang/tree/master/docs.
+
 ## Local development
 
 Running the Hugo server locally:
